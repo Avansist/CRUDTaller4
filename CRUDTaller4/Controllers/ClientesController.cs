@@ -14,19 +14,18 @@ namespace CRUDTaller4.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly IClienteService _clienteservice;
+        private readonly IClienteService _clienteService;
 
         public ClientesController(IClienteService clienteService)
         {
-            _clienteservice = clienteService;
+            _clienteService = clienteService;
         }
 
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View(await _clienteservice.ObtenerClientes());
+            return View(await _clienteService.ObtenerClientes());
         }
-
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,8 +34,7 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CasilleroId == id);
+            var cliente = await _clienteService.ObtenerClientePorId(id.Value);
             if (cliente == null)
             {
                 return NotFound();
@@ -60,9 +58,13 @@ namespace CRUDTaller4.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var clienteTem = await _clienteService.ObtenerClientePorId(cliente.CasilleroId);
+
+                if (clienteTem == null)
+                {
+                    await _clienteService.GuardarCliente(cliente);
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(cliente);
         }
@@ -75,7 +77,7 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.FindAsync(id);
+            var cliente = await _clienteService.ObtenerClientePorId(id.Value);
             if (cliente == null)
             {
                 return NotFound();
@@ -97,22 +99,7 @@ namespace CRUDTaller4.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(cliente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClienteExists(cliente.CasilleroId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _clienteService.EditarCliente(cliente);
                 return RedirectToAction(nameof(Index));
             }
             return View(cliente);
@@ -126,16 +113,21 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.CasilleroId == id);
+            var cliente = await _clienteService.ObtenerClientePorId(id.Value);
             if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            await _clienteService.EliminarCliente(cliente);
+            return RedirectToAction(nameof(Index));
+
+            //return View(cliente);
         }
 
+
+
+        /*
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -151,5 +143,6 @@ namespace CRUDTaller4.Controllers
         {
             return _context.Clientes.Any(e => e.CasilleroId == id);
         }
+        */
     }
 }

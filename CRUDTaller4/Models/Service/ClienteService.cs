@@ -22,5 +22,52 @@ namespace CRUDTaller4.Models.Service
         {
             return await _context.Clientes.ToListAsync();
         }
+
+        public async Task<Cliente> ObtenerClientePorId(int id)
+        {
+            return await _context.Clientes
+                .FirstOrDefaultAsync(m => m.CasilleroId == id);
+        }
+
+        public async Task GuardarCliente(Cliente cliente)
+        {
+            try
+            {
+                _context.Add(cliente);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+        public async Task EditarCliente(Cliente cliente)
+        {
+            try
+            {
+                _context.Update(cliente);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public async Task EliminarCliente(Cliente cliente)
+        {
+            try
+            {
+
+                _context.Remove(cliente);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }

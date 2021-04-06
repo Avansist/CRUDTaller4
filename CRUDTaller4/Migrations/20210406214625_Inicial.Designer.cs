@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUDTaller4.Migrations
 {
     [DbContext(typeof(DbContextCrud))]
-    [Migration("20210404235442_Migracion inicial")]
-    partial class Migracioninicial
+    [Migration("20210406214625_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

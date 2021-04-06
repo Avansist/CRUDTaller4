@@ -2,7 +2,7 @@
 
 namespace CRUDTaller4.Migrations
 {
-    public partial class Migracioninicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
