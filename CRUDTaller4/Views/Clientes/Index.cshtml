@@ -4,44 +4,74 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Crear nuevo cliente</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CasilleroId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CasilleroId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CasilleroId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Gestionar Clientes</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Gestionar Paquetes</a></li>
+                        <li class="breadcrumb-item active">Gestionar Cliente</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <p>
+                <a asp-action="Create"><i class="fas fa-user-plus"></i> Crear nuevo cliente</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Correo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Direccion)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Correo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Direccion)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.CasilleroId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.CasilleroId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.CasilleroId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
