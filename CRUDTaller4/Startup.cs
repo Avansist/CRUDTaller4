@@ -31,6 +31,7 @@ namespace CRUDTaller4
             var conexion = Configuration["ConnectionStrings:conexion_sqlserver"];
             services.AddDbContext<DbContextCrud>(option => option.UseSqlServer(conexion));
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IPaqueteService, PaqueteService>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
         }

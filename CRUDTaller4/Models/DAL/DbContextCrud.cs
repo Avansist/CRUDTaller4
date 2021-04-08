@@ -13,6 +13,6 @@ namespace CRUDTaller4.Models.DAL
         {
         }
         public DbSet<Cliente> Clientes { get; set; }        
-        public DbSet<Paquete> Paquete { get; set; }
+        public DbSet<Paquete> Paquetes { get; set; }
     }
 }
