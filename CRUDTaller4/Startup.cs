@@ -30,9 +30,10 @@ namespace CRUDTaller4
             services.AddControllersWithViews();
             var conexion = Configuration["ConnectionStrings:conexion_sqlserver"];
             services.AddDbContext<DbContextCrud>(option => option.UseSqlServer(conexion));
-            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<IClienteService, ClienteService>();
-            
+            services.AddScoped<IPaqueteService, PaqueteService>();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +60,7 @@ namespace CRUDTaller4
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Clientes}/{action=Index}/{id?}");
+                    pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
             });
         }
     }

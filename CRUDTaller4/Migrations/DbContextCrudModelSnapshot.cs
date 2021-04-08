@@ -38,6 +38,39 @@ namespace CRUDTaller4.Migrations
 
                     b.ToTable("Clientes");
                 });
+
+            modelBuilder.Entity("CRUDTaller4.Models.Entities.Paquete", b =>
+                {
+                    b.Property<int>("PaqueteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CasilleroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ImagenId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Peso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoMercanciaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransportadoraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaqueteId");
+
+                    b.ToTable("Paquetes");
+                });
 #pragma warning restore 612, 618
         }
     }
