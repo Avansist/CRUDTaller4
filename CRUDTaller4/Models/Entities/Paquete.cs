@@ -15,6 +15,5 @@ namespace CRUDTaller4.Models.Entities
         public int ImagenId { get; set; }
         public int TransportadoraId { get; set; }
         public int TipoMercanciaId { get; set; }
-
     }
 }

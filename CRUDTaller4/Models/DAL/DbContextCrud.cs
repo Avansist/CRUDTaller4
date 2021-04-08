@@ -12,7 +12,7 @@ namespace CRUDTaller4.Models.DAL
         public DbContextCrud(DbContextOptions<DbContextCrud> options): base(options)
         {
         }
-        public DbSet<Cliente> Clientes { get; set; }
-        public object Cliente { get; internal set; }
+        public DbSet<Cliente> Clientes { get; set; }        
+        public DbSet<Paquete> Paquete { get; set; }
     }
 }
