@@ -8,7 +8,7 @@ namespace CRUDTaller4.Models.Abstract
 {
     public interface IClienteService
     {
-        Task<IEnumerable<Cliente>> ObtenerClientes();
+        Task<IEnumerable<Cliente>> ObtenerListaClientes();
         Task<Cliente> ObtenerClientePorId(int id);
         Task GuardarCliente(Cliente cliente);
         Task EditarCliente(Cliente cliente);

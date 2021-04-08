@@ -18,7 +18,7 @@ namespace CRUDTaller4.Models.Service
         {
             _context = context;
         }
-        public async Task<IEnumerable<Cliente>> ObtenerClientes()
+        public async Task<IEnumerable<Cliente>> ObtenerListaClientes()
         {
             return await _context.Clientes.ToListAsync();
         }

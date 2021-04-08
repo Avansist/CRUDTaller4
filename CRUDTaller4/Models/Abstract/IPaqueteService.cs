@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CRUDTaller4.Models.Abstract
 {
-    interface IPaqueteService
+    public interface IPaqueteService
     {
-        Task<IEnumerable<Paquete>> ObtenerPaquetes();
+        Task<IEnumerable<Paquete>> ObtenerListaPaquetes();
         Task<Paquete> ObtenerPaquetePorId(int id);
         Task GuardarPaquete(Paquete Paquete);
         Task EditarPaquete(Paquete Paquete);

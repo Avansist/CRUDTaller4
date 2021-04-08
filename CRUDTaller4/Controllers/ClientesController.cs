@@ -24,7 +24,7 @@ namespace CRUDTaller4.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View(await _clienteService.ObtenerClientes());
+            return View(await _clienteService.ObtenerListaClientes());
         }
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)

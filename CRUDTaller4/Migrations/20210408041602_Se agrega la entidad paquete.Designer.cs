@@ -3,14 +3,16 @@ using CRUDTaller4.Models.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CRUDTaller4.Migrations
 {
     [DbContext(typeof(DbContextCrud))]
-    partial class DbContextCrudModelSnapshot : ModelSnapshot
+    [Migration("20210408041602_Se agrega la entidad paquete")]
+    partial class Seagregalaentidadpaquete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,68 +4,94 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Peso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CasilleroId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstadoId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagenId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransportadoraId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoMercanciaId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Peso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CasilleroId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagenId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransportadoraId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoMercanciaId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PaqueteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PaqueteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PaqueteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Gestionar Paquetes</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Clientes">Gestionar Clientes</a></li>
+                        <li class="breadcrumb-item active">Gestionar Paquetes</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <p>
+                <a asp-action="Create" class="btn btn-outline-dark"><i class="far fa-plus-square"></i> Crear nuevo paquete</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Peso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CasilleroId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstadoId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ImagenId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TransportadoraId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoMercanciaId)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Peso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CasilleroId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EstadoId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ImagenId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TransportadoraId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoMercanciaId)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.PaqueteId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.PaqueteId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.PaqueteId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

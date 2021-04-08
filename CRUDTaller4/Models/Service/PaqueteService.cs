@@ -17,7 +17,7 @@ namespace CRUDTaller4.Models.Service
             _context = context;
         }
 
-        public async Task<IEnumerable<Paquete>> ObtenerPaquetes()
+        public async Task<IEnumerable<Paquete>> ObtenerListaPaquetes()
         {
             return await _context.Paquetes.ToListAsync();
         }

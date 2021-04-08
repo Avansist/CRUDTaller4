@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CRUDTaller4.Models.DAL;
 using CRUDTaller4.Models.Entities;
+using CRUDTaller4.Models.Abstract;
 
 namespace CRUDTaller4.Controllers
 {
     public class PaquetesController : Controller
     {
-        private readonly DbContextCrud _context;
+        private readonly IPaqueteService _paqueteService;
 
-        public PaquetesController(DbContextCrud context)
+        public PaquetesController(IPaqueteService paqueteService)
         {
-            _context = context;
+            _paqueteService = paqueteService;
         }
 
         // GET: Paquetes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Paquete.ToListAsync());
+            return View(await _paqueteService.ObtenerListaPaquetes());
         }
 
         // GET: Paquetes/Details/5
@@ -33,8 +34,7 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var paquete = await _context.Paquete
-                .FirstOrDefaultAsync(m => m.PaqueteId == id);
+            var paquete = await _paqueteService.ObtenerPaquetePorId(id.Value);
             if (paquete == null)
             {
                 return NotFound();
@@ -58,9 +58,13 @@ namespace CRUDTaller4.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paquete);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var paqueteTem = await _paqueteService.ObtenerPaquetePorId(paquete.PaqueteId);
+
+                if (paqueteTem == null)
+                {
+                    await _paqueteService.GuardarPaquete(paquete);
+                    return RedirectToAction(nameof(Index));
+                }               
             }
             return View(paquete);
         }
@@ -73,7 +77,7 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var paquete = await _context.Paquete.FindAsync(id);
+            var paquete = await _paqueteService.ObtenerPaquetePorId(id.Value);
             if (paquete == null)
             {
                 return NotFound();
@@ -95,23 +99,11 @@ namespace CRUDTaller4.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(paquete);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PaqueteExists(paquete.PaqueteId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                    await _paqueteService.EditarPaquete(paquete);
+                    return RedirectToAction(nameof(Index));
+                }                
             }
             return View(paquete);
         }
@@ -124,8 +116,7 @@ namespace CRUDTaller4.Controllers
                 return NotFound();
             }
 
-            var paquete = await _context.Paquete
-                .FirstOrDefaultAsync(m => m.PaqueteId == id);
+            var paquete = await _paqueteService.ObtenerPaquetePorId(id.Value);
             if (paquete == null)
             {
                 return NotFound();
@@ -133,7 +124,7 @@ namespace CRUDTaller4.Controllers
 
             return View(paquete);
         }
-
+        /*
         // POST: Paquetes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -149,5 +140,6 @@ namespace CRUDTaller4.Controllers
         {
             return _context.Paquete.Any(e => e.PaqueteId == id);
         }
+        */
     }
 }
